@@ -2,6 +2,17 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
+        <img
+        alt="JobFollow logo"
+        src="~assets/logo.svg"
+        style="width: auto; height: 4dvh;margin: 0.5dvh 0;"
+        >
+        <q-toolbar-title>
+          JobFollow
+        </q-toolbar-title>
+        
+        <!-- <div>Quasar v{{ $q.version }}</div> -->
+
         <q-btn
           flat
           dense
@@ -10,12 +21,6 @@
           aria-label="Menu"
           @click="toggleLeftDrawer"
         />
-
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -23,7 +28,19 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
+      side="right"
     >
+      <q-list>
+        <q-item-label
+          header>
+          Main Menu
+        </q-item-label>
+
+        <MainLink v-for="link in navlinks"
+          :key="link.title"
+          v-bind="link" />
+      </q-list>
+
       <q-list>
         <q-item-label
           header
@@ -48,6 +65,41 @@
 <script setup>
 import { ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import MainLink from 'components/MainLink.vue'
+
+const navlinks = [
+  {
+    title: 'DashBoard',
+    caption: 'DashBoard',
+    icon: 'dashboard',
+    link: '/dashboard/'
+  },
+  {
+    title: 'Applications',
+    caption: 'Applications list',
+    icon: 'list_alt',
+    link: '/applications-list/'
+  },
+  {
+    title: 'Add Application',
+    caption: 'Adding a new application',
+    icon: 'post_add',
+    link: '/application-new/'
+  },
+  {
+    title: 'Stats',
+    caption: 'Applications statistics',
+    icon: 'query_stats',
+    link: '/applications-stats/'
+  },
+  {
+    title: 'Settings',
+    caption: 'App settings',
+    icon: 'settings',
+    link: '/app-settings/'
+  },
+
+]
 
 const linksList = [
   {
