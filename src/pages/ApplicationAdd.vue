@@ -77,9 +77,10 @@
         }
         else {
             $q.notify({
-                color: 'green-10',
+                color: 'green-8',
                 textColor: 'white',
-                icon: ''
+                icon: 'task',
+                message: 'Application registered'
             })
         }
     })

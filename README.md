@@ -1,6 +1,11 @@
 # JobFollow (jobfollow-app)
 
-A Quasar Project
+## Description
+JobFollow is an app to track your job applications.
+This is version 2 — a previous version was written with Flutter.
+After a few years away from Flutter, I preferred to rewrite it using JavaScript and Vue.
+This version uses Vue 3, Quasar Framework, and PouchDB for offline-first capabilities.
+It helps you stay organized, monitor your application progress, and never miss a follow-up.
 
 ## Install the dependencies
 ```bash
