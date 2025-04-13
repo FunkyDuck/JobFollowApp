@@ -1,27 +1,31 @@
 import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
-import PouchDBUpsert from 'pouchdb-upsert';
+// import { upsert } from './upsert';
 
 PouchDB.plugin(PouchDBFind);
-PouchDB.plugin(PouchDBUpsert);
 
 const db = new PouchDB('jobfollow_db');
 
-const addApplication = async (application) => {
+const addApplication = async (builderFn) => {
     const now = new Date().toISOString();
+    const emptyApp = {};
+    const application = builderFn(emptyApp); // applique les champs via la callback
+
     const doc = {
         _id: `application:${crypto.randomUUID()}`,
         type: 'application',
         created_at: now,
         updated_at: now,
         ...application
-    }
+    };
     
     try {
         await db.put(doc);
         console.log('Application added');
+        return doc; // tu peux retourner le doc pour le récupérer ensuite si besoin
     } catch (err) {
         console.error('Failed to add application : ', err);
+        throw err;
     }
 };
 
