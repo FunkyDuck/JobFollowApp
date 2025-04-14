@@ -11,7 +11,7 @@
       icon="delete" 
       color="red-10"/>
 
-    <q-dialog v-model="alertDeleteApplications" persistent>
+    <q-dialog v-model="alertDeleteApplications" :class="{ shake: isShaking }" persistent>
       <q-card>
         <q-card-section class="row items-center">
           <q-avatar icon="delete" color="primary" text-color="white" />
@@ -38,10 +38,16 @@
 
   const alertDeleteApplications = ref(false)
   const $q = useQuasar()
+  const isShaking = ref(false)
 
   const deleteAllApplications = async () => {
     try {
       await resetDb()
+
+      isShaking.value = true
+      await new Promise(resolve => setTimeout(resolve, 500))
+      isShaking.value = false
+      alertDeleteApplications.value = false
 
       $q.notify({
         color: 'green-8',
@@ -58,8 +64,21 @@
         icon: 'error',
         message: 'Problem for delete applications'
       })
+      alertDeleteApplications.value = false
     }
-    alertDeleteApplications.value = false
   }
 </script>
-  
+
+<style>
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+
+  .shake {
+    animation: shake 0.5s ease;
+  }
+</style>

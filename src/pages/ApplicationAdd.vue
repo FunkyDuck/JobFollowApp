@@ -134,8 +134,13 @@
     const on_site_options = ['On Site', 'Remote', 'Hybrid']
     const status_options = ['Draft', 'Applied', 'Interview', 'Offer', 'Accepted', 'Rejected', 'WithDraw', 'Archived']
 
+    const sanitizeUrl = (url) => {
+        url = url.trim()
+        return /^https?:\/\//.test(url) ? url : `https://${url}`
+    }
+
     const onSubmit = async ()=>{
-        if(title.value === null || title.value === '') {
+        if(title.value === null || title.value.trim() === '') {
             $q.notify({
                 color: 'orange-5',
                 textColor: 'white',
@@ -143,7 +148,7 @@
                 message: 'You need to add a job title...'
             })
         } 
-        else if(company.value === null || company.value === '') {
+        else if(company.value === null || company.value.trim() === '') {
             $q.notify({
                 color: 'orange-5',
                 textColor: 'white',
@@ -159,15 +164,15 @@
                 }
 
                 const response = await addApplication((application) => {
-                    application.title = title.value,
-                    application.company = company.value,
-                    application.city = city.value,
-                    application.country = country.value,
-                    application.offer_url = offer_url.value,
+                    application.title = title.value.trim(),
+                    application.company = company.value.trim(),
+                    application.city = city.value.trim(),
+                    application.country = country.value.trim(),
+                    application.offer_url = sanitizeUrl(offer_url.value),
                     application.status = status.value,
                     application.date_applied = date_applied.value,
                     application.on_site = on_site.value,
-                    application.notes = notes.value
+                    application.notes = notes.value.trim()
 
                     return application
                 })

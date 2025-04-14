@@ -1,30 +1,11 @@
 <template>
-  <q-page class="flex flex-center column">
-    <h1 v-if="!selectedApplication">
+  <q-page class="flex flex-center column" v-if="!selectedApplication">
+    <h1>
       <q-icon name="list_alt" />
       Applications list
     </h1>
 
-    <h1 v-else>
-      <q-icon name="work" />
-      {{ selectedApplication.title }} • <i>{{ selectedApplication.company }}</i>
-    </h1>
-
-    <section v-if="selectedApplication">
-      <b>
-        <q-icon name="flag" />
-        {{ selectedApplication.city }} • {{ selectedApplication.country }}
-      </b>
-
-      <i>
-        <q-icon name="event" />
-        {{ selectedApplication.date_applied }}
-      </i>
-
-      <q-btn @click="selectedApplication = null" label="Back" icon="keyboard_return" /> 
-    </section>
-
-    <section v-else>
+    <section>
       <ul>
         <li v-for="item in applications"
           :key="item._id"
@@ -50,6 +31,36 @@
       </ul>
     </section>
   </q-page>
+
+  <q-page class="flex flex-center column" v-else>
+    <h1>
+      <q-icon name="work" />
+      Application for
+    </h1>
+
+    <h2>
+      {{ selectedApplication.title }} <i>@ {{ selectedApplication.company }}</i>
+    </h2>
+
+    <!-- <section class="column"> -->
+      <b>
+        <q-icon name="flag" />
+        {{ selectedApplication.city }} • <i>{{ selectedApplication.country }}</i>
+      </b>
+
+      <i>
+        <q-icon name="event" />
+        {{ selectedApplication.date_applied }}
+      </i>
+
+      <div v-if="selectedApplication.offer_url">
+        <q-icon name="link" />
+        <a href="selectedApplication.offer_url" target="_blank">{{ selectedApplication.offer_url }}</a>
+      </div>
+
+      <q-btn @click="selectedApplication = null" label="Back" icon="keyboard_return" /> 
+    <!-- </section> -->
+  </q-page>
 </template>
   
 <script setup>
@@ -67,6 +78,13 @@
 </script>
   
 <style>
+  h1 {
+    i {
+      font-size: 3rem;
+      vertical-align: sub;
+    }
+  }
+
   li {
     list-style-type: none;
     text-align: left;
