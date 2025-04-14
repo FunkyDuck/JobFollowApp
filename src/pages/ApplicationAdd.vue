@@ -172,6 +172,18 @@
                     return application
                 })
 
+                setTimeout(() => {
+                    title.value = null
+                    company.value = null
+                    city.value = null
+                    country.value = null
+                    offer_url.value = null
+                    status.value = null
+                    date_applied.value = null
+                    on_site.value = null
+                    notes.value = null
+                },10)
+
                 console.log(response);
 
                 $q.notify({
