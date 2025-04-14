@@ -153,6 +153,11 @@
         }
         else {
             try {
+                if(date_applied.value === null) {
+                    const today = new Date().toISOString()
+                    date_applied.value = today.split('T')[0]
+                }
+
                 const response = await addApplication((application) => {
                     application.title = title.value,
                     application.company = company.value,
@@ -160,6 +165,7 @@
                     application.country = country.value,
                     application.offer_url = offer_url.value,
                     application.status = status.value,
+                    application.date_applied = date_applied.value,
                     application.on_site = on_site.value,
                     application.notes = notes.value
 
