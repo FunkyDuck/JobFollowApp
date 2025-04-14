@@ -172,7 +172,7 @@
                     application.status = status.value,
                     application.date_applied = date_applied.value,
                     application.on_site = on_site.value,
-                    application.notes = notes.value.trim()
+                    application.notes = (notes.value && notes.value.trim() !== '')? notes.value.trim() : null
 
                     return application
                 })

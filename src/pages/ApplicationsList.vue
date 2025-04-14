@@ -55,7 +55,7 @@
 
       <div v-if="selectedApplication.offer_url">
         <q-icon name="link" />
-        <a href="selectedApplication.offer_url" target="_blank">{{ selectedApplication.offer_url }}</a>
+        <a :href="selectedApplication.offer_url" target="_blank">{{ selectedApplication.offer_url }}</a>
       </div>
 
       <q-btn @click="selectedApplication = null" label="Back" icon="keyboard_return" /> 
