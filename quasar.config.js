@@ -3,6 +3,7 @@
 
 import { defineConfig } from '#q-app/wrappers'
 import { fileURLToPath } from 'node:url'
+import { version } from './package.json'
 
 export default defineConfig((ctx) => {
   return {
@@ -51,7 +52,9 @@ export default defineConfig((ctx) => {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        APP_VERSION: JSON.stringify(version)
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,

@@ -130,6 +130,7 @@
     const date_applied = ref(null)
     const status = ref(null)
     const notes = ref(null)
+    const source_event_id = ref(null)
 
     const on_site_options = ['On Site', 'Remote', 'Hybrid']
     const status_options = ['Draft', 'Applied', 'Interview', 'Offer', 'Accepted', 'Rejected', 'WithDraw', 'Archived']
@@ -173,6 +174,7 @@
                     application.date_applied = date_applied.value,
                     application.on_site = on_site.value,
                     application.notes = (notes.value && notes.value.trim() !== '')? notes.value.trim() : null
+                    application.source_event_id = source_event_id
 
                     return application
                 })

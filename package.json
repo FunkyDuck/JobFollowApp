@@ -1,9 +1,9 @@
 {
   "name": "jobfollow-app",
-  "version": "2.1.1",
+  "version": "2.1.4",
   "description": "A Quasar Project",
   "productName": "JobFollow",
-  "author": "LoicLoadcontrol <jacques_loic@funkyduck.be>",
+  "author": "Ginji-FunkyDuck <jacques_loic@funkyduck.be>",
   "type": "module",
   "private": true,
   "scripts": {

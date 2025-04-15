@@ -4,27 +4,69 @@
       <q-icon name="settings" />
       Settings
     </h1>
+
+    <q-btn 
+      @click="isDarkMode = !isDarkMode"
+      :label="isDarkMode ? 'Light theme' : 'Dark theme'"
+      :icon="isDarkMode ? 'light_mode' : 'dark_mode'" 
+      color="grey-8" />
+    
+    <q-btn 
+      @click="null"
+      label="Language"
+      icon="flag" 
+      color="grey-8" />
+
+    <q-btn 
+      @click="null"
+      label="Notifications"
+      icon="notifications" 
+      color="grey-8" />
+    
+    <q-btn 
+      @click="null"
+      label="Export datas"
+      icon="download_for_offline" 
+      color="grey-8" />
+
+    <q-btn 
+      @click="null"
+      label="Import datas"
+      icon="upload_file" 
+      color="grey-8" />
+
+    <q-btn 
+      :label="`Version: ${appVersion}`"
+      dense
+      icon="smartphone" 
+      color="grey-8" />
+
+    <q-btn 
+      @click="null"
+      label="About"
+      icon="remember_me" 
+      color="grey-8" />
       
     <q-btn 
-      @click="alertDeleteApplications = true"
-      label="Delete all Applications"
+      @click="alertDeleteDatas = true"
+      label="Delete all Datas"
       icon="delete" 
       color="red-10"/>
 
-    <q-dialog v-model="alertDeleteApplications" :class="{ shake: isShaking }" persistent>
+    <q-dialog v-model="alertDeleteDatas" :class="{ shake: isShaking }" persistent>
       <q-card>
         <q-card-section class="row items-center">
           <q-avatar icon="delete" color="primary" text-color="white" />
           <span class="q-ml-sm">
-            ⚠️ This will permanently delete all saved applications.<br>
+            ⚠️ This will permanently delete all saved datas.<br>
             Are you absolutely sure?<br>
             This action cannot be undone.
           </span>
         </q-card-section>
 
         <q-card-actions align="right">
-          <q-btn flat label="No, Cancel" icon="close" color="primary" v-close-popup @click="alertDeleteApplications = false" />
-          <q-btn flat label="Yes, Delete all" icon="check" color="primary" v-close-popup @click="deleteAllApplications()" />
+          <q-btn flat label="No, Cancel" icon="close" color="primary" v-close-popup @click="alertDeleteDatas = false" />
+          <q-btn flat label="Yes, Delete all" icon="check" color="primary" v-close-popup @click="deleteAllDatas()" />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -36,18 +78,22 @@
   import { ref } from 'vue'
   import { useQuasar } from 'quasar'
 
-  const alertDeleteApplications = ref(false)
+  const alertDeleteDatas = ref(false)
   const $q = useQuasar()
   const isShaking = ref(false)
+  const isDarkMode = ref(false)
+  const appVersion = import.meta.env.APP_VERSION || 'dev'
 
-  const deleteAllApplications = async () => {
+  console.log(appVersion)
+
+  const deleteAllDatas = async () => {
     try {
       await resetDb()
 
       isShaking.value = true
       await new Promise(resolve => setTimeout(resolve, 500))
       isShaking.value = false
-      alertDeleteApplications.value = false
+      alertDeleteDatas.value = false
 
       $q.notify({
         color: 'green-8',
@@ -64,7 +110,7 @@
         icon: 'error',
         message: 'Problem for delete applications'
       })
-      alertDeleteApplications.value = false
+      alertDeleteDatas.value = false
     }
   }
 </script>
@@ -80,5 +126,9 @@
 
   .shake {
     animation: shake 0.5s ease;
+  }
+
+  button {
+    margin: 1dvh 0;
   }
 </style>

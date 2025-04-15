@@ -1,6 +1,5 @@
 import PouchDB from 'pouchdb';
 import PouchDBFind from 'pouchdb-find';
-// import { upsert } from './upsert';
 
 PouchDB.plugin(PouchDBFind);
 

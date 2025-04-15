@@ -87,6 +87,12 @@ const navlinks = [
     link: '/application-new/'
   },
   {
+    title: 'Job Fairs',
+    caption: 'View yours job fairs. Also for adding or updating a job fair.',
+    icon: 'festival',
+    link: '/job-fairs/'
+  },
+  {
     title: 'Stats',
     caption: 'Applications statistics',
     icon: 'query_stats',

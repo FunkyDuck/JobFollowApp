@@ -32,41 +32,16 @@
     </section>
   </q-page>
 
-  <q-page class="flex flex-center column" v-else>
-    <h1>
-      <q-icon name="work" />
-      Application for
-    </h1>
-
-    <h2>
-      {{ selectedApplication.title }} <i>@ {{ selectedApplication.company }}</i>
-    </h2>
-
-    <!-- <section class="column"> -->
-      <b>
-        <q-icon name="flag" />
-        {{ selectedApplication.city }} • <i>{{ selectedApplication.country }}</i>
-      </b>
-
-      <i>
-        <q-icon name="event" />
-        {{ selectedApplication.date_applied }}
-      </i>
-
-      <div v-if="selectedApplication.offer_url">
-        <q-icon name="link" />
-        <a :href="selectedApplication.offer_url" target="_blank">{{ selectedApplication.offer_url }}</a>
-      </div>
-
-      <q-btn @click="selectedApplication = null" label="Back" icon="keyboard_return" /> 
-    <!-- </section> -->
-  </q-page>
+  <ApplicationDetail v-else
+    :application="selectedApplication"
+    @close="selectedApplication = null" />
 </template>
   
 <script setup>
   //
   import { ref, onMounted } from 'vue'
   import { findCandidatures } from 'src/services/db'
+  import ApplicationDetail from './ApplicationDetail.vue'
 
   const applications = ref([])
   const selectedApplication = ref(null)

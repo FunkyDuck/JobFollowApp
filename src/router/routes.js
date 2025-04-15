@@ -3,6 +3,7 @@ import ApplicationsList from 'pages/ApplicationsList.vue'
 import ApplicationAdd from 'pages/ApplicationAdd.vue'
 import ApplicationsStats from 'pages/ApplicationsStats.vue'
 import AppSettings from 'pages/AppSettings.vue'
+import JobFairs from 'src/pages/JobFairs.vue'
 
 const routes = [
   {
@@ -14,6 +15,7 @@ const routes = [
       { path: 'applications-list', component: ApplicationsList },
       { path: 'application-new', component: ApplicationAdd },
       { path: 'applications-stats', component: ApplicationsStats },
+      { path: 'job-fairs', component: JobFairs },
       { path: 'app-settings', component: AppSettings },
     ]
   },
