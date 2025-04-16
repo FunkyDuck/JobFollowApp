@@ -74,7 +74,7 @@
 </template>
   
 <script setup>
-  import { resetDb } from 'src/services/db'
+  import { resetDb } from 'src/services/db-settings'
   import { ref } from 'vue'
   import { useQuasar } from 'quasar'
 

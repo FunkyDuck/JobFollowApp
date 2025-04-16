@@ -93,6 +93,12 @@ const navlinks = [
     link: '/job-fairs/'
   },
   {
+    title: 'Guidance & Coaching',
+    caption: 'View yours appointment with coachs and advisors.',
+    icon: 'sports',
+    link: '/guidance-coaching/'
+  },
+  {
     title: 'Stats',
     caption: 'Applications statistics',
     icon: 'query_stats',

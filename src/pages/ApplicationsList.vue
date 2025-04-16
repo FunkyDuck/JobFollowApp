@@ -40,14 +40,14 @@
 <script setup>
   //
   import { ref, onMounted } from 'vue'
-  import { findCandidatures } from 'src/services/db'
+  import { findApplications } from 'src/services/db-application'
   import ApplicationDetail from './ApplicationDetail.vue'
 
   const applications = ref([])
   const selectedApplication = ref(null)
     
   onMounted(async () => {
-    applications.value = await findCandidatures()
+    applications.value = await findApplications()
     console.log(applications.value)
   })
 </script>

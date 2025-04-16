@@ -116,7 +116,7 @@
   
   <script setup>
     import { useQuasar } from 'quasar'
-    import { addApplication } from '../services/db';
+    import { addApplication } from '../services/db-application';
     import { ref } from 'vue'
 
     const $q = useQuasar();
