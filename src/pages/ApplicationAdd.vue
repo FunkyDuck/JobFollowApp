@@ -136,6 +136,9 @@
     const status_options = ['Draft', 'Applied', 'Interview', 'Offer', 'Accepted', 'Rejected', 'WithDraw', 'Archived']
 
     const sanitizeUrl = (url) => {
+        if(!url) {
+            return null
+        }
         url = url.trim()
         return /^https?:\/\//.test(url) ? url : `https://${url}`
     }

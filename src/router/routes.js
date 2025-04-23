@@ -5,6 +5,7 @@ import ApplicationsStats from 'pages/ApplicationsStats.vue'
 import AppSettings from 'pages/AppSettings.vue'
 import JobFairs from 'src/pages/JobFairs.vue'
 import GuidanceCoaching from 'src/pages/GuidanceCoaching.vue'
+import PersonalContact from 'src/pages/PersonalContact.vue'
 
 const routes = [
   {
@@ -17,7 +18,8 @@ const routes = [
       { path: 'application-new', component: ApplicationAdd },
       { path: 'applications-stats', component: ApplicationsStats },
       { path: 'job-fairs', component: JobFairs },
-      { path: 'guidance-coaching', component: GuidanceCoaching},
+      { path: 'guidance-coaching', component: GuidanceCoaching },
+      { path: 'personal-contact', component: PersonalContact },
       { path: 'app-settings', component: AppSettings },
     ]
   },

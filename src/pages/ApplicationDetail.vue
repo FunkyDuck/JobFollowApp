@@ -58,7 +58,10 @@
             transition-prev="jump-up"
             transition-next="jump-up">
             <q-tab-panel name="contacts">
-                <h2>Contacts</h2>
+                <h2>
+                    <q-icon name="contacts" />
+                    Contacts
+                </h2>
 
                 <section v-if="contacts.length == 0">
                     No contact founds...<br>
@@ -67,19 +70,47 @@
 
                 <ul v-else>
                     <li v-for="c in contacts"
-                        :key="c.id"
+                        :key="c._id"
                         v-bind="c">
                         <b>{{ c.contact_type }} : </b> {{ c.contact_value }}
+                        <q-btn
+                            size="sm"
+                            color="blue-8"
+                            textColor="white"
+                            icon="edit"
+                            label="Edit"
+                            @click="selectedContact = c"
+                            style="margin: 0.5dvh 0.5dvw; padding: 0.25dvh 0.5dvw;" />
                     </li>
                 </ul>
                 
                 <ApplicationAddContact
                     :application_id="props.application._id"
+                    :contact="selectedContact"
                     @contact-added="handleContactAdded" />
             </q-tab-panel>
 
             <q-tab-panel name="history">
-                <h2>History</h2>
+                <h2>
+                    <q-icon name="work_history" />
+                    History
+                </h2>
+
+                <section v-if="history.length == 0">
+                    History not found...<br>
+                    Add history ?
+                </section>
+
+                <ul v-else>
+                    <li v-for="h in history"
+                        :key="h._id"
+                        v-bind="h">
+                        <b>{{ h.status }} :</b>&nbsp;<i>{{ h.date }}</i>
+                    </li>
+                </ul>
+                <ApplicationAddHistory 
+                    :application_id="props.application._id" 
+                    @history-updated="handleHistoryUpdated"/>
             </q-tab-panel>
 
             <q-tab-panel name="notes">
@@ -101,29 +132,31 @@
     //
     import { ref, onMounted } from 'vue'
     import { findContactsByApplication } from 'src/services/db-contact'
+    import { findHistory } from 'src/services/db-application'
     import ApplicationAddContact from './ApplicationAddContact.vue'
+    import ApplicationAddHistory from './ApplicationAddHistory.vue'
   
     const tab = ref('contacts')
     const contacts = ref([])
+    const selectedContact = ref(null)
     const history = ref([])
     const notes = ref(null)
     const notifications = ref([])
 
     const getContacts = async () => { contacts.value = await findContactsByApplication(props.application._id) }
+    const getHistory = async () => { history.value = await findHistory(props.application._id) }
     
     const props = defineProps({
         application: Object
     })
 
-    const handleContactAdded = (contact) => {
-        console.log('New contact : ', contact)
-        getContacts()
-    }
+    const handleContactAdded = () => { getContacts() }
 
+    const handleHistoryUpdated = () => { getHistory() }
+    
     onMounted(async () => {
         getContacts()
-        console.log('history')
-        console.log(history.value)
+        getHistory()
         console.log('notes')
         console.log(notes.value)
         console.log('notifications')
@@ -137,6 +170,7 @@
         li {
             list-style-type: none;
             text-align: left;
+            vertical-align: middle;
             background: #C5C3C6;
             color: #1985A1;
             padding: 0.125dvh 1dvw;

@@ -99,6 +99,12 @@ const navlinks = [
     link: '/guidance-coaching/'
   },
   {
+    title: 'Personal Contact',
+    caption: 'View yours personal contact and interaction with us.',
+    icon: 'connect_without_contact',
+    link: '/personal-contact/'
+  },
+  {
     title: 'Stats',
     caption: 'Applications statistics',
     icon: 'query_stats',

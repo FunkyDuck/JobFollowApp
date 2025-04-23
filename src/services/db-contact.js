@@ -16,7 +16,7 @@ const addContactToApplication = async (builderFn) => {
     try {
         await db.put(doc)
         console.log('Contact added')
-        return doc // tu peux retourner le doc pour le récupérer ensuite si besoin
+        return doc 
     } catch (err) {
         console.error('Failed to add contact : ', err)
         throw err
